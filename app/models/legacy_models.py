@@ -1,29 +1,7 @@
 from sqlalchemy import Column, Integer, String, Float, DateTime, Text, Boolean
 from sqlalchemy.sql import func
 
-from app.database import Base
-
-
-class Tenant(Base):
-    __tablename__ = "tenants"
-
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String(255), nullable=False)
-    slug = Column(String(120), unique=True, nullable=False)
-    is_active = Column(Boolean, nullable=False, default=True)
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
-
-
-class SourceChannel(Base):
-    __tablename__ = "source_channels"
-
-    id = Column(Integer, primary_key=True, index=True)
-    tenant_id = Column(Integer, nullable=False, default=0)
-    name = Column(String(160), nullable=False)
-    platform = Column(String(160), nullable=False)
-    config_json = Column(Text, nullable=True)
-    is_enabled = Column(Boolean, nullable=False, default=True)
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
+from app.models import Base
 
 
 class ComplaintIssue(Base):
@@ -54,17 +32,6 @@ class SocialPost(Base):
     sentiment_score = Column(Float, nullable=False, default=0.0)
     is_complaint = Column(Integer, nullable=False, default=0)
     complaint_topic = Column(String(255), nullable=True)
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
-
-
-class ComplaintCluster(Base):
-    __tablename__ = "complaint_clusters"
-
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String(255), nullable=False)
-    description = Column(Text, nullable=True)
-    size = Column(Integer, nullable=False, default=0)
-    growth_rate = Column(Float, nullable=False, default=0.0)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
 

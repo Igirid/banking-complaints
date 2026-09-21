@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Down for maintenance</title>
+    <style>
+        {% raw %}
+        :root {
+            --bg: #fbfaf8;
+            --fg: #14181e;
+            --muted: #5e626a;
+            --accent: #6d4fe3;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #14181e;
+                --fg: #e6e8eb;
+                --muted: #9aa0a8;
+            }
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg);
+            color: var(--fg);
+            font-family: 'Sora', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            text-align: center;
+        }
+
+        .status {
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            font-size: .8rem;
+            margin: 0 0 .5rem;
+        }
+
+        h1 {
+            margin: 0 0 .5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        p {
+            margin: 0;
+            color: var(--muted);
+        }
+        {% endraw %}
+    </style>
+</head>
+
+<body>
+    <div>
+        <p class="status">Maintenance</p>
+        <h1>We'll be right back.</h1>
+        <p>This application is briefly down for maintenance. Please check back soon.</p>
+    </div>
+</body>
+
+</html>

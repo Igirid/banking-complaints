@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masonite</title>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=sora:400,500,600&display=swap" rel="stylesheet">
+    <style>
+        {% raw %}
+        :root {
+            --bg: #fbfaf8;
+            --fg: #14181e;
+            --muted: #5e626a;
+            --card: #ffffff;
+            --border: rgba(20, 24, 30, .12);
+            --accent: #6d4fe3;
+            --accent-strong: #4a33a6;
+            --glow: rgba(109, 79, 227, .07);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #14181e;
+                --fg: #e6e8eb;
+                --muted: #9aa0a8;
+                --card: #1c2128;
+                --border: #232a33;
+                --accent: #9c82f2;
+                --accent-strong: #c9bbff;
+                --glow: rgba(156, 130, 242, .08);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg);
+            background-image: radial-gradient(60rem 30rem at 50% -10rem, var(--glow), transparent);
+            color: var(--fg);
+            font-family: 'Sora', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 64rem;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        header.wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 2rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .65rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -.01em;
+        }
+
+        .pill {
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 999px;
+            padding: .15rem .75rem;
+            font-size: .8rem;
+            font-weight: 500;
+        }
+
+        main.wrap {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+
+        .hero h1 {
+            margin: 0 0 .75rem;
+            font-size: clamp(2.25rem, 5vw, 3.25rem);
+            font-weight: 600;
+            letter-spacing: -.025em;
+            line-height: 1.15;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .hero p {
+            margin: 0 0 3rem;
+            max-width: 36rem;
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        .cards {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+        }
+
+        .card {
+            display: block;
+            padding: 1.5rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: .75rem;
+            text-decoration: none;
+            color: inherit;
+            transition: border-color .15s ease, transform .15s ease;
+        }
+
+        .card:hover,
+        .card:focus-visible {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .card h2 {
+            margin: 0 0 .35rem;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+
+        .card h2 span {
+            color: var(--accent);
+            transition: transform .15s ease;
+        }
+
+        .card:hover h2 span {
+            transform: translateX(3px);
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        footer.wrap {
+            padding-top: 1rem;
+            padding-bottom: 2rem;
+            color: var(--muted);
+            font-size: .85rem;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .card,
+            .card h2 span {
+                transition: none;
+            }
+        }
+        {% endraw %}
+    </style>
+</head>
+
+<body>
+    <header class="wrap">
+        <div class="brand">
+            <!-- Masonite — the Great Pyramid mark (fixed brand violet, never recolored) -->
+            <svg width="34" height="34" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Masonite logo">
+                <polygon points="60,16 14,80 60,104" fill="#9C82F2" />
+                <polygon points="60,16 106,80 60,104" fill="#4A33A6" />
+                <line x1="60" y1="16" x2="60" y2="104" stroke="#C9BBFF" stroke-width="2.5" opacity=".5" />
+            </svg>
+            Masonite
+        </div>
+        <span class="pill">v{{ version }}</span>
+    </header>
+
+    <main class="wrap">
+        <section class="hero">
+            <h1>Let's build something <em>solid</em>.</h1>
+            <p>
+                Your Masonite application is ready. Explore the resources below
+                to start crafting your next idea, brick by brick.
+            </p>
+        </section>
+
+        <section class="cards">
+            <a class="card" href="https://docs.masonite.dev">
+                <h2>Documentation <span>&rarr;</span></h2>
+                <p>Guides, tutorials and the full reference for every Masonite feature.</p>
+            </a>
+            <a class="card" href="https://orm.masoniteproject.com">
+                <h2>Masonite ORM <span>&rarr;</span></h2>
+                <p>Models, migrations, relationships and the query builder.</p>
+            </a>
+            <a class="card" href="https://github.com/masonitedev/masonite">
+                <h2>GitHub <span>&rarr;</span></h2>
+                <p>Star the repo, report issues and contribute to the framework.</p>
+            </a>
+        </section>
+    </main>
+
+    <footer class="wrap">
+        Masonite v{{ version }} &middot; Python {{ python_version }}
+    </footer>
+</body>
+
+</html>

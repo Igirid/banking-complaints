@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page not found</title>
+    <style>
+        {% raw %}
+        :root {
+            --bg: #fbfaf8;
+            --fg: #14181e;
+            --muted: #5e626a;
+            --border: rgba(20, 24, 30, .12);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #14181e;
+                --fg: #e6e8eb;
+                --muted: #9aa0a8;
+                --border: #232a33;
+            }
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg);
+            color: var(--fg);
+            font-family: 'Sora', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        .code {
+            padding-right: 1.25rem;
+            margin-right: 1.25rem;
+            border-right: 1px solid var(--border);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .message {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+        {% endraw %}
+    </style>
+</head>
+
+<body>
+    <span class="code">404</span>
+    <span class="message">This page could not be found.</span>
+</body>
+
+</html>
