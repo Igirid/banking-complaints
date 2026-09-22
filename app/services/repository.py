@@ -3,7 +3,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from sqlalchemy.pool import StaticPool
 
-from app.models import ComplaintIssue, SocialPost, AlertRecord, Base, engine
+from app.models import Base, engine
+from app.models.legacy_models import ComplaintIssue, SocialPost, AlertRecord
 
 
 @dataclass
@@ -56,7 +57,7 @@ class ComplaintRepository:
             return []
         return self.session.query(SocialPost).order_by(SocialPost.id.desc()).limit(limit).all()
 
-    def add_issue(self, * , topic, severity, sentiment, volume, trend, regulatory_risk, business_impact, priority_score):
+    def add_issue(self, *, topic, severity, sentiment, volume, trend, regulatory_risk, business_impact, priority_score):
         if self.session is None:
             return RepositoryResult(success=False, error='No database session configured')
         issue = ComplaintIssue(
@@ -84,11 +85,14 @@ class ComplaintRepository:
             return {"top_topic": None, "total_volume": 0, "issue_count": 0, "items": []}
         topics = {}
         for issue in issues:
-            bucket = topics.setdefault(issue.topic, {"topic": issue.topic, "volume": 0, "priority_score": 0.0, "count": 0})
+            bucket = topics.setdefault(issue.topic, {
+                                       "topic": issue.topic, "volume": 0, "priority_score": 0.0, "count": 0})
             bucket["volume"] += int(issue.volume)
-            bucket["priority_score"] = max(bucket["priority_score"], float(issue.priority_score))
+            bucket["priority_score"] = max(
+                bucket["priority_score"], float(issue.priority_score))
             bucket["count"] += 1
-        ordered = sorted(topics.values(), key=lambda item: (item["volume"], item["priority_score"]), reverse=True)
+        ordered = sorted(topics.values(), key=lambda item: (
+            item["volume"], item["priority_score"]), reverse=True)
         top_topic = ordered[0]["topic"] if ordered else None
         total_volume = sum(item["volume"] for item in ordered)
         return {"top_topic": top_topic, "total_volume": total_volume, "issue_count": len(ordered), "items": ordered}
@@ -114,5 +118,6 @@ class ComplaintRepository:
 
     def summarize_alerts(self):
         alerts = self.list_alerts(limit=500)
-        high_alert_count = sum(1 for alert in alerts if alert.severity.lower() == 'high')
+        high_alert_count = sum(
+            1 for alert in alerts if alert.severity.lower() == 'high')
         return {"total_alerts": len(alerts), "high_alert_count": high_alert_count, "items": [{"id": alert.id, "title": alert.title, "severity": alert.severity, "issue_topic": alert.issue_topic, "tenant_id": alert.tenant_id} for alert in alerts]}

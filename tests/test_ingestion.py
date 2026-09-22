@@ -32,7 +32,7 @@ def test_repository_persists_social_post_records():
     source_id = repo.add_social_post(
         source="reddit",
         platform="reddit",
-        text="My bank app froze after transfer", 
+        text="My bank app froze after transfer",
         language="en",
         source_url="https://reddit.com/r/bankingscams",
         sentiment_score=-0.8,
@@ -49,7 +49,8 @@ def test_repository_persists_social_post_records():
 
 def test_ai_service_detects_bank_complaint_topic():
     service = ComplaintAIService()
-    result = service.classify_complaint("My card was declined and the app froze after I tried to transfer money")
+    result = service.classify_complaint(
+        "My card was declined and the app froze after I tried to transfer money")
 
     assert result["is_complaint"] is True
     assert result["topic"] in {"card_declined", "transfer_delay", "app_freeze"}

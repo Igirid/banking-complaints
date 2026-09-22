@@ -1,14 +1,17 @@
 # Banking Complaints Intelligence Platform - Production Plan
 
 ## 1. Goal
+
 Build a production-grade backend that ingests public social media complaints about banking services, detects issue patterns using AI, ranks complaints based on a configurable business metric, and exposes monetizable APIs for enterprise clients.
 
 ## 2. Scope
+
 This project focuses on the backend intelligence layer and operational foundation. The frontend is intentionally separate and should be built as a standalone microservice.
 
 ## 3. Architecture
 
 ### Core services
+
 - Ingestion service
 - Normalization and enrichment service
 - AI classification and clustering service
@@ -18,6 +21,7 @@ This project focuses on the backend intelligence layer and operational foundatio
 - Persistence layer
 
 ### Data flow
+
 1. Collect public posts from X, Reddit, reviews, forums, and public complaint sources.
 2. Normalize fields and detect duplicates.
 3. Run complaint classification and semantic clustering.
@@ -29,6 +33,7 @@ This project focuses on the backend intelligence layer and operational foundatio
 ## 4. Stack
 
 ### Primary stack
+
 - Python
 - FastAPI
 - MariaDB / MySQL
@@ -48,6 +53,7 @@ This project focuses on the backend intelligence layer and operational foundatio
 ## 5. Components to implement next
 
 ### A. Data model and migrations
+
 - banks / tenants
 - sources
 - social_posts
@@ -59,12 +65,14 @@ This project focuses on the backend intelligence layer and operational foundatio
 - metric_configurations
 
 ### B. Ingestion layer
+
 - polling adapters for X, Reddit, and review APIs
 - message queue publisher
 - retry and backoff strategy
 - payload validation
 
 ### C. AI layer
+
 - complaint vs non-complaint classifier
 - sentiment scoring
 - topic extraction
@@ -72,6 +80,7 @@ This project focuses on the backend intelligence layer and operational foundatio
 - custom metric ranking engine
 
 ### D. Insight API
+
 - GET /health
 - POST /insights/rank
 - GET /insights/trends
@@ -81,6 +90,7 @@ This project focuses on the backend intelligence layer and operational foundatio
 - GET /insights/benchmark
 
 ### E. Production concerns
+
 - tenant isolation
 - rate limiting
 - audit logs
@@ -92,6 +102,7 @@ This project focuses on the backend intelligence layer and operational foundatio
 - observability
 
 ## 6. Implementation order
+
 1. Set up database schema and repository layer
 2. Add ingestion service skeleton with message queue integration
 3. Add complaint classification and topic detection service
@@ -102,6 +113,7 @@ This project focuses on the backend intelligence layer and operational foundatio
 8. Add documentation and deployment pipeline
 
 ## 7. Key architectural principles
+
 - Separate ingestion, processing, AI, and API layers
 - Keep the frontend decoupled from backend implementation details
 - Store raw data and normalized data separately
@@ -110,6 +122,7 @@ This project focuses on the backend intelligence layer and operational foundatio
 - Assume public social data may be noisy and incomplete
 
 ## 8. Success metrics
+
 - Complaint detection accuracy above business threshold
 - Fast ranking response time under target SLA
 - Top complaint clusters identified within near-real-time windows
@@ -117,4 +130,5 @@ This project focuses on the backend intelligence layer and operational foundatio
 - Alerts are actionable and correctly grouped by issue family
 
 ## 9. Frontend microservice contract
+
 The frontend service must consume the backend via explicit API contracts only and should not share business logic with the backend. It will display dashboards, trend charts, rankings, and alert views for client teams.

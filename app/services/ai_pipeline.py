@@ -25,7 +25,8 @@ class ComplaintAIService:
             "transfer",
         ]
 
-        is_complaint = any(keyword in normalized for keyword in complaint_keywords)
+        is_complaint = any(
+            keyword in normalized for keyword in complaint_keywords)
 
         if not is_complaint:
             return {"is_complaint": False, "confidence": 0.76, "label": "neutral", "topic": "neutral"}
@@ -52,7 +53,8 @@ class ComplaintAIService:
             topics[topic]["items"].append(complaint)
 
         return [
-            {"topic": name, "size": data["count"], "sample_size": min(5, len(data["items"]))}
+            {"topic": name, "size": data["count"],
+                "sample_size": min(5, len(data["items"]))}
             for name, data in sorted(topics.items(), key=lambda kv: kv[1]["count"], reverse=True)
         ]
 
@@ -60,5 +62,6 @@ class ComplaintAIService:
         if not complaint_group:
             return {"summary": "No complaints found"}
 
-        top_topic = max(complaint_group, key=lambda item: item.get("volume", 0))
+        top_topic = max(complaint_group,
+                        key=lambda item: item.get("volume", 0))
         return {"summary": f"Most active complaint pattern: {top_topic.get('topic', 'unknown')}", "top_topic": top_topic.get("topic", "unknown"), "count": len(complaint_group)}

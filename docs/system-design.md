@@ -50,6 +50,7 @@ flowchart LR
 ### Core entities
 
 #### Post
+
 - id
 - source
 - source_url
@@ -64,6 +65,7 @@ flowchart LR
 - processed_at
 
 #### ComplaintIssue
+
 - id
 - cluster_id
 - topic
@@ -78,6 +80,7 @@ flowchart LR
 - last_seen_at
 
 #### Cluster
+
 - id
 - name
 - description
@@ -87,6 +90,7 @@ flowchart LR
 - growth_rate
 
 #### InsightReport
+
 - id
 - customer_id
 - metric_name
@@ -120,10 +124,12 @@ flowchart LR
 ## 3) AI ranking and grouping algorithm
 
 ### Complaint detection
+
 - Use a classifier to decide: complaint / praise / neutral / spam / irrelevant
 - Model input: post text, metadata, brand mentions, attention signals, and historical labels
 
 ### Topic clustering
+
 - Use embeddings + clustering to group semantically similar issues
 - Example topics:
   - card_declined
@@ -134,6 +140,7 @@ flowchart LR
   - support_wait_time
 
 ### Priority metric
+
 A flexible score is computed as:
 
 $$
@@ -182,12 +189,12 @@ Request:
     }
   ],
   "metric_weights": {
-    "severity": 0.30,
+    "severity": 0.3,
     "sentiment": 0.25,
     "volume": 0.15,
-    "trend": 0.10,
-    "regulatory_risk": 0.10,
-    "business_impact": 0.10
+    "trend": 0.1,
+    "regulatory_risk": 0.1,
+    "business_impact": 0.1
   }
 }
 ```
@@ -212,6 +219,7 @@ Response:
 ```
 
 ### Additional useful endpoints
+
 - GET /health
 - GET /insights/demo
 - GET /insights/topics
@@ -224,22 +232,26 @@ Response:
 ## Recommended frameworks and technologies
 
 ### Application services
+
 - Python
 - FastAPI
 - Pydantic
 - Uvicorn
 
 ### Streaming and ingestion
+
 - Kafka
 - Python workers or Azure Event Hubs
 
 ### Storage and search
+
 - MySQL or MariaDB
 - TimescaleDB (optional if you want time-series analytics)
 - OpenSearch
 - MySQL/MariaDB JSON + vector support via plugin or a separate vector store if needed
 
 ### AI / NLP
+
 - Azure OpenAI or OpenAI
 - LangChain
 - sentence-transformers
@@ -247,12 +259,14 @@ Response:
 - scikit-learn
 
 ### Frontend
+
 - React
 - Next.js
 - TypeScript
 - Recharts / ECharts
 
 ### Infrastructure
+
 - Docker
 - Kubernetes
 - Terraform

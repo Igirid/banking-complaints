@@ -4,6 +4,7 @@ Project goal:
 Create a React + Next.js + TypeScript dashboard that consumes the backend complaint intelligence API and lets bank analysts monitor complaint trends, issue clusters, and ranked priorities in real time.
 
 Requirements:
+
 - Use Next.js or Vite React app with TypeScript
 - Use Tailwind CSS or a similar utility-first UI framework
 - Create a secure, multi-tenant dashboard UI for banking clients
@@ -36,6 +37,7 @@ Requirements:
 - Document how to run the frontend microservice and how it connects to the backend
 
 API contract assumptions:
+
 - Base URL is provided via environment variable
 - Endpoints include:
   - GET /health
@@ -46,6 +48,7 @@ API contract assumptions:
 - Use JSON responses and typed frontend models
 
 Deliverables:
+
 - app structure with pages or routes
 - components for cards, charts, tables, filters, and detail views
 - reusable API client
@@ -53,6 +56,7 @@ Deliverables:
 - basic tests for key UI components and API contract handling
 
 Acceptance criteria:
+
 - The app starts locally without errors
 - The dashboard renders mock or live complaint data
 - Users can change the metric weighting and see ranking changes

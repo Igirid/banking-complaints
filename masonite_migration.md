@@ -1,9 +1,9 @@
-Migration steps to Masonite 4
-================================
+# Migration steps to Masonite 4
 
 This repository was originally implemented with FastAPI. Masonite 5 is not available on PyPI, so this project targets Masonite 4.20.4 as the supported framework for migration.
 
 Prerequisites
+
 - Python 3.11 or 3.12 (Python 3.13 has build issues with some Masonite dependencies)
 - A virtual environment created using that Python version
 
@@ -29,6 +29,7 @@ cd masonite_project
 ```
 
 What the converter does
+
 - Creates controller files mapping the existing insight endpoints to Masonite controller actions.
 - Creates `routes/web.py` entries corresponding to the current FastAPI endpoints.
 
@@ -40,4 +41,5 @@ craft serve
 ```
 
 Notes
+
 - If you prefer, I can perform the conversion inside this repo directly and move files into a `masonite_project/` folder — say the word and I'll proceed.

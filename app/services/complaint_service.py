@@ -1,11 +1,14 @@
 from typing import List
 
+
 class ComplaintInsightService:
     def list_issue_clusters(self) -> List[dict]:
         return []
 
     def list_alerts(self) -> List[dict]:
         return []
+
+
 class ComplaintInsightService:
     def get_summary(self):
         return {
@@ -42,6 +45,7 @@ class ComplaintInsightService:
         return {
             "items": [
                 {"id": "AL-101", "title": "Card declines spike", "severity": "high"},
-                {"id": "AL-102", "title": "App crash complaints rising", "severity": "medium"},
+                {"id": "AL-102", "title": "App crash complaints rising",
+                    "severity": "medium"},
             ]
         }
